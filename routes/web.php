@@ -1,6 +1,8 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', App\Http\Livewire\Dasbord\Index::class)->name('home');
+
+Route::get('/nasabah/create', App\Http\Livewire\Nasabah\Create::class)->name('nasabah.create');
+Route::get('/nasabah', App\Http\Livewire\Nasabah\Index::class)->name('nasabah.index');
+Route::get('/nasabah/{id}/edit', App\Http\Livewire\Nasabah\Edit::class)->name('nasabah.edit');
