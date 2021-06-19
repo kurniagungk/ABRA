@@ -17,8 +17,8 @@ class CreateTransaksiTable extends Migration
             $table->uuid('id');
             $table->unsignedBigInteger('nasabah_id');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->enum('jenis', ['setor', 'tarik']);
-            $table->bigInteger('jumlah');
+            $table->bigInteger('setor')->nullable();
+            $table->bigInteger('tarik')->nullable();
             $table->timestamps();
             $table->foreign('nasabah_id')->references('id')->on('nasabah')->onDelete('cascade');
         });
