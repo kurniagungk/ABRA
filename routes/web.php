@@ -26,4 +26,5 @@ Route::get('/home', App\Http\Livewire\Dasbord\Index::class)->name('home');
 Route::get('/nasabah/create', App\Http\Livewire\Nasabah\Create::class)->name('nasabah.create');
 Route::get('/nasabah', App\Http\Livewire\Nasabah\Index::class)->name('nasabah.index');
 Route::get('/nasabah/{id}/edit', App\Http\Livewire\Nasabah\Edit::class)->name('nasabah.edit');
-Route::get('/transaksi/setor/', App\Http\Livewire\Transaksi\Setor::class)->name('nasabah.edit');
+Route::get('/transaksi/setor/', App\Http\Livewire\Transaksi\Setor::class)->name('transaksi.setor');
+Route::get('/transaksi/tarik/', App\Http\Livewire\Transaksi\Tarik::class)->name('transaksi.tarik');

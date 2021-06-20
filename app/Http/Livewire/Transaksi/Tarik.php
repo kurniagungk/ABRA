@@ -7,18 +7,18 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class Setor extends Component
+class Tarik extends Component
 {
 
 
     public $nis;
     public $nasabah;
     private $nasabah_id;
-    public $setor;
+    public $tarik;
 
 
     protected $rules = [
-        'setor' => 'required|min:1|numeric',
+        'tarik' => 'required|min:1|numeric',
     ];
 
 
@@ -47,38 +47,43 @@ class Setor extends Component
 
         $nasabah = $this->nasabah;
 
+        if ($nasabah->saldo <= 0 || $nasabah->saldo < $this->tarik)
+            return $this->addError('tarik', 'Saldo Tidak Mencukupi');
+
         try {
 
             DB::beginTransaction();
 
-            $nasabah->saldo += $this->setor;
+            $nasabah->saldo -= $this->tarik;
 
             $nasabah->save();
 
             $nasabah->transaksi()->create([
                 'user_id' => Auth::id(),
-                'setor' => $this->setor
+                'tarik' => $this->tarik
             ]);
 
             DB::commit();
 
             $this->emit('start');
 
-            $this->reset('nasabah', 'setor', 'nis');
+            $this->reset('nasabah', 'tarik', 'nis');
 
-            return session()->flash('message', 'Berhasil Setor Saldo');
+            return session()->flash('message', 'Berhasil Tarik Saldo');
         } catch (Throwable $e) {
             report($e);
             DB::rollBack();
-            return session()->flash('danger', 'Berhasil Setor Saldo');;
+            return session()->flash('danger', 'Berhasil Tarik Saldo');;
         }
     }
 
 
 
 
+
+
     public function render()
     {
-        return view('livewire.transaksi.setor')->extends('layouts.app')->section('content');
+        return view('livewire.transaksi.tarik')->extends('layouts.app')->section('content');
     }
 }

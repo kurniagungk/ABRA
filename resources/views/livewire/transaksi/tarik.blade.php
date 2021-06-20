@@ -112,9 +112,9 @@
 
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control  @error('setor') is-invalid @enderror" id="setor"
-                                    wire:model="setor" autocomplete="off">
-                                @error('setor')
+                                <input type="text" class="form-control  @error('tarik') is-invalid @enderror" id="tarik"
+                                    wire:model="tarik" autocomplete="off">
+                                @error('tarik')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -155,7 +155,7 @@
 
 <script>
     Livewire.on('nis', () => {
-        document.getElementById('setor').focus();
+        document.getElementById('tarik').focus();
     });
 
     Livewire.on('start', () => {
