@@ -36,7 +36,7 @@
                         <div class="input-group">
 
                             <input type="text" class="form-control @error('nis') is-invalid @enderror" autofocus
-                                wire:model="nis" placeholder="Username" id="nis"
+                                wire:model.prevent="nis" placeholder="Username" id="nis" autofocus
                                 aria-describedby="validationTooltipUsernamePrepend" required>
                             <div class="input-group-prepend">
                                 <button class="btn btn-primary" type="submit"><i class="fa fa-search"
@@ -140,6 +140,8 @@
             </div>
         </div>
 
+        <livewire:transaksi.histori :nasabah="$nasabah" />
+
     </div>
 
     @endif
@@ -153,13 +155,17 @@
 </div>
 
 
+<script src="{{ asset('js/sweetalert2.js') }}"></script>
+
 <script>
     Livewire.on('nis', () => {
         document.getElementById('setor').focus();
     });
 
     Livewire.on('start', () => {
-       document.getElementById('nis').focus();
+        Swal.fire('Berhasil Setor').then(() => {
+            document.getElementById('nis').focus();
+    })
     });
 
 

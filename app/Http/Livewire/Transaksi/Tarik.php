@@ -68,8 +68,6 @@ class Tarik extends Component
             $this->emit('start');
 
             $this->reset('nasabah', 'tarik', 'nis');
-
-            return session()->flash('message', 'Berhasil Tarik Saldo');
         } catch (Throwable $e) {
             report($e);
             DB::rollBack();
@@ -84,6 +82,7 @@ class Tarik extends Component
 
     public function render()
     {
+
         return view('livewire.transaksi.tarik')->extends('layouts.app')->section('content');
     }
 }

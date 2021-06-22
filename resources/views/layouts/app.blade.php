@@ -33,6 +33,7 @@
     <script defer src="{{ asset('js/app.js') }}"></script>
     <script defer src="{{ asset('js/sb-admin-2.js')}}"></script>
     <script defer src="{{ asset('js/jquery.easing.min.js') }}"></script>
+    @push('scripts')
 
 </head>
 

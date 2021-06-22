@@ -65,8 +65,6 @@ class Setor extends Component
             $this->emit('start');
 
             $this->reset('nasabah', 'setor', 'nis');
-
-            return session()->flash('message', 'Berhasil Setor Saldo');
         } catch (Throwable $e) {
             report($e);
             DB::rollBack();
