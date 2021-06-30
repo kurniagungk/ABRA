@@ -15,17 +15,22 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
-Route::get('/home', App\Http\Livewire\Dasbord\Index::class)->name('home');
 
-Route::get('/nasabah/create', App\Http\Livewire\Nasabah\Create::class)->name('nasabah.create');
-Route::get('/nasabah', App\Http\Livewire\Nasabah\Index::class)->name('nasabah.index');
-Route::get('/nasabah/{id}/edit', App\Http\Livewire\Nasabah\Edit::class)->name('nasabah.edit');
-Route::get('/nasabah/import', App\Http\Livewire\Nasabah\Import::class)->name('nasabah.import');
-Route::get('/transaksi/setor/', App\Http\Livewire\Transaksi\Setor::class)->name('transaksi.setor');
-Route::get('/transaksi/tarik/', App\Http\Livewire\Transaksi\Tarik::class)->name('transaksi.tarik');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', App\Http\Livewire\Dasbord\Index::class)->name('home');
+    Route::get('/nasabah/create', App\Http\Livewire\Nasabah\Create::class)->name('nasabah.create');
+    Route::get('/nasabah', App\Http\Livewire\Nasabah\Index::class)->name('nasabah.index');
+    Route::get('/nasabah/{id}/edit', App\Http\Livewire\Nasabah\Edit::class)->name('nasabah.edit');
+    Route::get('/nasabah/import', App\Http\Livewire\Nasabah\Import::class)->name('nasabah.import');
+    Route::get('/transaksi/setor/', App\Http\Livewire\Transaksi\Setor::class)->name('transaksi.setor');
+    Route::get('/transaksi/tarik/', App\Http\Livewire\Transaksi\Tarik::class)->name('transaksi.tarik');
+
+    Route::get('/laporan', App\Http\Livewire\Laporan\Index::class)->name('laporan.index');
+});
