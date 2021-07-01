@@ -19,7 +19,7 @@ class Chart extends Component
     public function transaksi()
     {
 
-        $akhir = date("Y-m-d");
+        $akhir = date('Y-m-d', strtotime('+1' . ' days'));
         $awal = date('Y-m-d', strtotime('-30' . ' days'));
 
         $transaksi = transaksi::select(DB::raw('sum(setor) as setor, sum(tarik) as tarik, date(created_at) as day'))
