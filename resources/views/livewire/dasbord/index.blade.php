@@ -48,19 +48,13 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Transasik Masuk Bulan
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Pinjaman
                                 ini
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">Rp
-                                        {{number_format($data['setor'],2,',','.')}}</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                        {{number_format($data['pinjaman'],2,',','.')}}</div>
                                 </div>
                             </div>
                         </div>
@@ -79,10 +73,9 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Transasik Keluar Bulan
-                                ini</div>
+                                Uang Yang ada</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">Rp
-                                {{number_format($data['tarik'],2,',','.')}}</div>
+                                {{number_format($data['saldo'] - $data['pinjaman'],2,',','.')}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-receipt fa-2x text-gray-300"></i>

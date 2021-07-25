@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Transaksi;
 
 use App\Models\nasabah;
+use App\Models\saldo;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -60,15 +61,19 @@ class Setor extends Component
                 'setor' => $this->setor
             ]);
 
+            $saldo = saldo::where('nama', 'tabungan')->first();
+            $saldo->jumlah += $this->setor;
+            $saldo->save();
+
+
             DB::commit();
 
             $this->emit('start');
 
             $this->reset('nasabah', 'setor', 'nis');
-        } catch (Throwable $e) {
-            report($e);
+        } catch (\Exception $e) {
             DB::rollBack();
-            return session()->flash('danger', 'Berhasil Setor Saldo');;
+            return session()->flash('danger', 'Gagal Setor Tunai');;
         }
     }
 

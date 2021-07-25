@@ -1,10 +1,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
 
-    </div>
 
     <!-- Content Row -->
     <div class="row">
@@ -13,7 +10,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Tambah Nasabah</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Daftar User</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">
@@ -66,40 +63,28 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Nis</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Jenis Kelamin</th>
-                                    <th scope="col">Tempat Tanggal Lahir</th>
-                                    <th scope="col">Alamat</th>
-                                    <th scope="col">Saldo</th>
-                                    <th scope="col">foto</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">#</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($nasabah as $item)
+                                @foreach ($user as $item)
 
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$item->nis}}</td>
-                                    <td>{{$item->nama}}</td>
-                                    <td>{{$item->jenis == 'l' ? "Laki - Laki" : "Wanita"}}</td>
-                                    <td>{{$item->tempat_lahir}}, {{$item->tgl_lahir}}</td>
-                                    <td>{{$item->alamat}}</td>
-                                    <td>{{$item->saldo}}</td>
-                                    <td>
-                                        <img src="{{asset('storage/'.$item->foto)}}" alt="" style="height:50px;">
-                                    </td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->email}}</td>
                                     <td>
                                         <div class="row">
-                                            <a type="button" href="{{ route('nasabah.edit', ['id'=>$item->id]) }}"
+                                            <a type="button" href="{{ route('user.edit', ['id'=>$item->id]) }}"
                                                 class="btn btn-primary mx-2">Edit</a>
-                                            @if($nasabah_id == $item->id)
+                                            @if($user_id == $item->id)
                                             <button type="button" class="btn btn-danger mx-2"
                                                 wire:click="delet({{$item->id}})">Yes</button>
                                             @else
                                             <button type="button" class="btn btn-warning mx-2"
-                                                wire:click="$set('nasabah_id', {{$item->id}})">Hapus</button>
+                                                wire:click="$set('user_id', {{$item->id}})">Hapus</button>
                                             @endif
                                         </div>
 
@@ -111,7 +96,7 @@
                             </tbody>
                         </table>
 
-                        {{ $nasabah->links() }}
+                        {{ $user->links() }}
                     </div>
 
                 </div>

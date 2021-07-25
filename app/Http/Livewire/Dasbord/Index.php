@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Dasbord;
 
 use App\Models\nasabah;
+use App\Models\saldo;
 use App\Models\transaksi;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -15,18 +16,19 @@ class Index extends Component
         $akhir = date("Y-m-d");
         $awal = date('Y-m-d', strtotime('-30' . ' days'));
 
-        $nasabah = nasabah::get();
+        $saldo = saldo::where('nama', 'tabungan')->first();
+        $pinjaman = saldo::where('nama', 'pinjaman')->first();
 
-        $transaksi = transaksi::select(DB::raw('sum(setor) as setor, sum(tarik) as tarik'))
-            ->whereBetween('created_at',  [$awal, $akhir])
-            ->first();
+        $nasabah = nasabah::count();
+
+
+
 
 
         $data = [
-            'jumlahNasaba' => count($nasabah),
-            'saldo' => $nasabah->sum('saldo'),
-            'setor' => $transaksi->setor,
-            'tarik' => $transaksi->tarik,
+            'jumlahNasaba' => $nasabah,
+            'saldo' => $saldo->jumlah,
+            'pinjaman' => $pinjaman->jumlah,
         ];
 
 

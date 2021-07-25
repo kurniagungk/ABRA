@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Transaksi;
 
 use App\Models\nasabah;
+use App\Models\saldo;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -63,15 +64,18 @@ class Tarik extends Component
                 'tarik' => $this->tarik
             ]);
 
+            $saldo = saldo::where('nama', 'tabungan')->first();
+            $saldo->jumlah -= $this->tarik;
+            $saldo->save();
+
             DB::commit();
 
             $this->emit('start');
 
             $this->reset('nasabah', 'tarik', 'nis');
         } catch (Throwable $e) {
-            report($e);
             DB::rollBack();
-            return session()->flash('danger', 'Berhasil Tarik Saldo');;
+            return session()->flash('danger', 'Gagal Tarik Tunai');;
         }
     }
 
