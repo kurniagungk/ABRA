@@ -72,7 +72,7 @@
                             <tbody>
                                 @foreach ($pinjaman as $item)
                                 <tr>
-                                    <td>{{ $loop->index }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->tanggal }}</td>
                                     <td>Rp. {{number_format($item->dibayar,2,',','.')  }}</td>
                                     <td>Rp. {{number_format($item->total,2,',','.')  }}</td>
@@ -85,6 +85,8 @@
                                         <a class="btn btn-primary" href="{{ route('pinjaman.pembayaran', $item->id) }}"
                                             role="button">Pembayaran</a>
                                         @endif
+                                        <a class="btn btn-primary" href="{{ route('pinjaman.detail', $item->id) }}"
+                                            role="button">Detail Pembayaran</a>
                                         @if ($item->dibayar == 0)
 
                                         @if($pinjaman_id == $item->id)
