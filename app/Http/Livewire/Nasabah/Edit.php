@@ -61,8 +61,8 @@ class Edit extends Component
         $nasabah->tgl_lahir = $this->tanggal;
         $nasabah->alamat = $this->alamat;
         if ($this->foto) {
-
-            Storage::disk('public')->delete($nasabah->foto);
+            if ($nasabah->foto != "foto/user.png")
+                Storage::disk('public')->delete($nasabah->foto);
             $foto = $this->foto->store('foto', 'public');
             $nasabah->foto = $foto;
         }

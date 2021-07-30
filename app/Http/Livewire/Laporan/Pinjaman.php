@@ -14,22 +14,23 @@ class Pinjaman extends Component
     public $awal, $akhir, $pinjaman, $status;
     public $tanggal = false;
 
-    protected function rules()
-    {
-        return [
-            'awal' => 'required_if:tanggal,true|date',
-            'akhir' => 'required_if:tanggal,true|date',
-        ];
-    }
+
 
     public function find()
     {
-        $this->validate();
+        if ($this->tanggal) {
+
+            $validatedData = $this->validate([
+                'awal' => 'required|date',
+                'akhir' => 'required|date',
+            ]);
+        }
+
         $query = ModelsPinjaman::where('status', 'like', '%' . $this->status . '%');
         if ($this->tanggal) {
-            $query->whereDate('tanggal', '<=', $this->awal);
-            $query->whereDate('tanggal', '>=', $this->akhir);
+            $query->whereBetween('tanggal', [$this->awal, $this->akhir]);
         }
+
 
         $this->pinjaman = $query->get();
     }

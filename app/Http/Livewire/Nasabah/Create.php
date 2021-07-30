@@ -28,7 +28,7 @@ class Create extends Component
     public function updatedfoto()
     {
         $this->validate([
-            'foto' => 'image|max:1024|mimes:png,jpeg,bmp,gif', // 1MB Max
+            'foto' => 'image|max:5000|mimes:png,jpeg,bmp,gif', // 1MB Max
         ]);
     }
 
@@ -38,7 +38,10 @@ class Create extends Component
 
         $this->validate();
 
-        $foto = $this->foto->store('foto', 'public');
+        if ($this->foto)
+            $foto = $this->foto->store('foto', 'public');
+        else
+            $foto = 'foto/user.png';
 
 
         nasabah::create([

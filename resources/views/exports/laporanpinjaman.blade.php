@@ -37,5 +37,11 @@
 
         @endforeach
 
+        <tr>
+            <td colspan="2" class="text-center">Total</td>
+            <td>{{ $pinjaman->sum('dibayar') }}</td>
+            <td>{{ $pinjaman->sum('total') }}</td>
+        </tr>
+
     </tbody>
 </table>

@@ -28,5 +28,12 @@
 
         @endforeach
 
+        <tr>
+            <td colspan="2">Total</td>
+            <td>{{ $transaksi->sum('tarik') }}</td>
+            <td>{{ $transaksi->sum('setor') }}</td>
+            <td>{{ $transaksi->sum('setor') - $transaksi->sum('tarik')}}</td>
+        </tr>
+
     </tbody>
 </table>

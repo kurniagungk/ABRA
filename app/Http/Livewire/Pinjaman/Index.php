@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Pinjaman;
 
 use App\Models\pinjaman;
+use App\Models\saldo;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Index extends Component
@@ -15,8 +17,17 @@ class Index extends Component
     public function delet($id)
     {
         try {
-            pinjaman::where('id', $id)->delete();
+            DB::beginTransaction();
+            $pinjaman =  pinjaman::where('id', $id)->first();
+            if ($pinjaman->dibayar > 0)
+                return  session()->flash('danger', 'tidak bisa dihapus karena ada transaksi');
+            $saldo = saldo::where('nama', 'pinjaman')->first();
+            $saldo->jumlah -= $pinjaman->total;
+            $saldo->save();
+            $pinjaman->delete();
+            DB::commit();
         } catch (QueryException $e) {
+            DB::rollBack();
             return  session()->flash('danger', 'harap hapus trasaksi produk');
         }
 

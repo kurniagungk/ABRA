@@ -158,7 +158,7 @@
     });
 
     Livewire.on('start', () => {
-        Swal.fire('Berhasil Tarik Tunais').then(() => {
+        Swal.fire('Berhasil Tarik Tunai').then(() => {
             document.getElementById('nis').focus();
     });
     });

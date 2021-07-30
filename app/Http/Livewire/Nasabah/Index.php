@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Nasabah;
 use App\Exports\NasabahExport;
 use App\Models\nasabah;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
@@ -38,7 +39,18 @@ class Index extends Component
     public function delet($id)
     {
         try {
-            nasabah::where('id', $id)->delete();
+            $nasabah =  nasabah::where('id', $id)->first();
+
+            if ($nasabah->saldo > 0) {
+                $this->reset('nasabah_id');
+                return  session()->flash('danger', 'harap kosongkan saldo nasabah');
+            }
+
+
+            if ($nasabah->foto != 'foto/user.png')
+                Storage::disk('public')->delete($nasabah->foto);
+
+            $nasabah->delete();
         } catch (QueryException $e) {
 
             return  session()->flash('danger', 'harap hapus trasaksi produk');

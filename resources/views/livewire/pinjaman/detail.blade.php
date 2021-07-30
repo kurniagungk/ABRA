@@ -54,7 +54,7 @@
                                 class=" {{ $pinjaman->status == "lunas" ? "badge badge-success" : "badge badge-danger" }}">{{ $pinjaman->status }}</span>
                         </div>
                     </div>
-
+                    @if($pinjaman->status == "belum")
                     <div class="form-group row">
                         <div class="col-sm-12">
                             <a type="button" class="btn btn-primary btn-lg btn-block mt-3"
@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-
+                    @endif
 
 
 
