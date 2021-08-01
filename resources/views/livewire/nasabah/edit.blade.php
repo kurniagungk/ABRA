@@ -106,7 +106,7 @@
 
 
                         <div class="form-group row">
-                            <label for="alamat" class="col-sm-2 col-form-label">Almat</label>
+                            <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                             <div class="col-sm-10">
                                 <textarea name="" id="alamat" cols="4" rows="4"
                                     class="form-control @error('alamat') is-invalid @enderror" wire:model="alamat"

@@ -14,43 +14,43 @@
         <div class="card-body px-5">
 
 
+            <div class="table-responsive-sm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Setor</th>
+                            <th scope="col">Tarik</th>
+                            <th scope="col">Saldo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Saldo Histori</td>
+                            <td>{{$saldoHistori['setor']}}</td>
+                            <td>{{$saldoHistori['tarik']}}</td>
+                            <td>{{$saldoHistori['setor'] - $saldoHistori['tarik']}}</td>
+                        </tr>
+                        @foreach ($transaksi as $tr )
+                        @php
+                        $saldo = $saldoHistori['setor'] - $saldoHistori['tarik'];
+                        @endphp
+                        <tr>
+                            <td>{{$loop->iteration +1}}</td>
+                            <td>{{$tr->created_at }}</td>
+                            <td>{{$tr->tarik }}</td>
+                            <td>{{$tr->setor }}</td>
+                            <td>{{ $saldo + ($tr->setor - $tr->tarik )}}</td>
+                        </tr>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Setor</th>
-                        <th scope="col">Tarik</th>
-                        <th scope="col">Saldo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Saldo Histori</td>
-                        <td>{{$saldoHistori['setor']}}</td>
-                        <td>{{$saldoHistori['tarik']}}</td>
-                        <td>{{$saldoHistori['setor'] - $saldoHistori['tarik']}}</td>
-                    </tr>
-                    @foreach ($transaksi as $tr )
-                    @php
-                    $saldo = $saldoHistori['setor'] - $saldoHistori['tarik'];
-                    @endphp
-                    <tr>
-                        <td>{{$loop->iteration +1}}</td>
-                        <td>{{$tr->created_at }}</td>
-                        <td>{{$tr->tarik }}</td>
-                        <td>{{$tr->setor }}</td>
-                        <td>{{ $saldo + ($tr->setor - $tr->tarik )}}</td>
-                    </tr>
+                        @endforeach
 
-                    @endforeach
+                    </tbody>
+                </table>
 
-                </tbody>
-            </table>
-
-
+            </div>
 
 
         </div>
