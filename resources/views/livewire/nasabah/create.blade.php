@@ -91,12 +91,13 @@
                                         <label class="form-check-label" for="gridRadios2">
                                             Perempuan
                                         </label>
+                                        @error('jenis')
+                                        <div class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                        @enderror
                                     </div>
-                                    @error('jenis')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
+
                                 </div>
                             </div>
                         </fieldset>
