@@ -80,7 +80,7 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$item->nis}}</td>
                                     <td>{{$item->nama}}</td>
-                                    <td>{{$item->jenis == 'l' ? "Laki - Laki" : "Wanita"}}</td>
+                                    <td>{{$item->jenis == 'l' ? "Laki - Laki" : "Perempuan "}}</td>
                                     <td>{{$item->tempat_lahir}}, {{$item->tgl_lahir}}</td>
                                     <td>{{$item->alamat}}</td>
                                     <td>{{$item->saldo}}</td>

@@ -115,7 +115,7 @@
                 <a class="collapse-item {{  request()->is('user') ? 'active' : '' }}"
                     href="{{route('user.index')}}">User</a>
                 <a class="collapse-item {{  request()->is('user/*/*') ? 'active' : '' }}"
-                    href="{{route('user.edit', Auth::id())}}">Setting Iser</a>
+                    href="{{route('user.edit', Auth::id())}}">Setting User</a>
             </div>
         </div>
     </li>
