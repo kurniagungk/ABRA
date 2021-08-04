@@ -21,8 +21,8 @@
         <tr>
             <td>{{$loop->iteration +1}}</td>
             <td>{{$tr->created_at }}</td>
-            <td>{{$tr->tarik }}</td>
             <td>{{$tr->setor }}</td>
+            <td>{{$tr->tarik }}</td>
             <td>{{ $tr->setor - $tr->tarik }}</td>
         </tr>
 
