@@ -18,7 +18,7 @@ class Histori extends Component
         $transaksiHistori = $nasabah->transaksi()->orderBy('created_at', 'desc')->take(5)->get();
 
 
-        $this->transaksi = $transaksi;
+        $this->transaksi = $transaksiHistori;
 
         $this->saldoHistori = [
             'setor' => $transaksi->sum('setor') - $transaksiHistori->sum('setor'),

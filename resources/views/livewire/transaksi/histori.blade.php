@@ -27,24 +27,28 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>1</td>
+                            <td></td>
                             <td>Saldo Histori</td>
-                            <td>{{$saldoHistori['setor']}}</td>
-                            <td>{{$saldoHistori['tarik']}}</td>
-                            <td>{{$saldoHistori['setor'] - $saldoHistori['tarik']}}</td>
+                            <td>Rp. {{number_format($saldoHistori['setor'],2,',','.')  }}</td>
+                            <td>Rp. {{number_format($saldoHistori['tarik'],2,',','.')  }}</td>
+                            <td>Rp. {{number_format($saldoHistori['setor'] - $saldoHistori['tarik'] ,2,',','.')  }}</td>
                         </tr>
-                        @foreach ($transaksi as $tr )
+
                         @php
                         $saldo = $saldoHistori['setor'] - $saldoHistori['tarik'];
                         @endphp
-                        <tr>
-                            <td>{{$loop->iteration +1}}</td>
-                            <td>{{$tr->created_at }}</td>
-                            <td>{{$tr->setor }}</td>
-                            <td>{{$tr->tarik }}</td>
-                            <td>{{ $saldo + ($tr->setor - $tr->tarik )}}</td>
-                        </tr>
 
+                        @foreach ($transaksi->reverse() as $tr )
+                        @php
+                        $saldo += $tr->setor - $tr->tarik;
+                        @endphp
+                        <tr>
+                            <td>{{$loop->iteration }}</td>
+                            <td>{{$tr->created_at }}</td>
+                            <td>Rp. {{ number_format($tr->setor,2,',','.')  }}</td>
+                            <td>Rp. {{number_format($tr->tarik,2,',','.')  }}</td>
+                            <td>Rp. {{ number_format($saldo,2,',','.')  }}</td>
+                        </tr>
                         @endforeach
 
                     </tbody>
