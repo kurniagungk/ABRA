@@ -42,6 +42,9 @@ class Pinjaman extends Component
 
     public function export()
     {
+
+
+
         $data = [
             'awal' => $this->awal,
             'akhir' => $this->awal,

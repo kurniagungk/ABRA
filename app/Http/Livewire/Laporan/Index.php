@@ -35,8 +35,8 @@ class Index extends Component
     public function export()
     {
         $data = [
-            'awal' => $this->awal,
-            'akhir' => $this->awal,
+            'awal' => $this->awal ?? null,
+            'akhir' => $this->awal ?? null,
             'data' => $this->transaksi,
         ];
         return Excel::download(new LaporanExport($data), 'Laporam ' . $this->awal . ' - '  . $this->akhir . ' .xlsx');
