@@ -22,7 +22,7 @@ class LaporanPinjamanExport implements FromView
 
     public function view(): View
     {
-        return view('exports.laporanPinjaman', [
+        return view('exports.laporanpinjaman', [
             'pinjaman' => $this->data['data'],
             'awal' => $this->data['awal'],
             'akhir' => $this->data['akhir'],
