@@ -29,7 +29,7 @@ class Index extends Component
     public function find()
     {
         $this->validate();
-        $this->transaksi = transaksi::whereBetween('updated_at',  [$this->awal . ' 00:00:00', $this->akhir . ' 23:59:59'])->get();
+        $this->transaksi = transaksi::whereBetween('updated_at',  [$this->awal . ' 00:00:00', $this->akhir . ' 23:59:59'])->with("nasabah")->get();
     }
 
     public function export()

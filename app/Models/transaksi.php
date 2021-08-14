@@ -27,6 +27,11 @@ class transaksi extends Model
         'created_at'
     ];
 
+    public function nasabah()
+    {
+        return $this->hasOne(nasabah::class, 'id', 'nasabah_id');
+    }
+
 
     public static function boot()
     {

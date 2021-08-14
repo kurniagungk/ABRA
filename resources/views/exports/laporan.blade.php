@@ -10,6 +10,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Tanggal</th>
+            <th scope="col">Nasabah</th>
             <th scope="col">Setor</th>
             <th scope="col">Tarik</th>
             <th scope="col">Saldo</th>
@@ -21,6 +22,7 @@
         <tr>
             <td>{{$loop->iteration +1}}</td>
             <td>{{$tr->created_at }}</td>
+            <td>{{$tr->nasabah->nama }}</td>
             <td>{{$tr->setor }}</td>
             <td>{{$tr->tarik }}</td>
             <td>{{ $tr->setor - $tr->tarik }}</td>
