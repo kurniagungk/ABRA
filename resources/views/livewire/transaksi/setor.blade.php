@@ -106,6 +106,13 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Tanggal</label>
+                            <div class="col-sm-10">
+                                <input type="datetime-local" step="any" class="form-control" wire:model="tanggal">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <div class="col-sm-12">
                                 <input type="text" class="form-control  @error('setor') is-invalid @enderror" id="setor"
                                     wire:model="setor" autocomplete="off">

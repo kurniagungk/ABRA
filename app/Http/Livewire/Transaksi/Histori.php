@@ -15,7 +15,7 @@ class Histori extends Component
     public function mount($nasabah)
     {
         $transaksi = $nasabah->transaksi;
-        $transaksiHistori = $nasabah->transaksi()->orderBy('created_at', 'desc')->take(5)->get();
+        $transaksiHistori = $nasabah->transaksi()->orderBy('created_at', 'desc')->take(10)->get();
 
 
         $this->transaksi = $transaksiHistori;

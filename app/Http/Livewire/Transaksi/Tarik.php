@@ -16,11 +16,17 @@ class Tarik extends Component
     public $nasabah;
     private $nasabah_id;
     public $tarik;
+    public $tanggal;
 
 
     protected $rules = [
         'tarik' => 'required|min:1|numeric',
     ];
+
+    public function mount()
+    {
+        $this->tanggal = date("Y-m-d\TH:i:s");
+    }
 
 
     public function find()
@@ -61,7 +67,8 @@ class Tarik extends Component
 
             $nasabah->transaksi()->create([
                 'user_id' => Auth::id(),
-                'tarik' => $this->tarik
+                'tarik' => $this->tarik,
+                'created_at' => $this->tanggal,
             ]);
 
             $saldo = saldo::where('nama', 'tabungan')->first();

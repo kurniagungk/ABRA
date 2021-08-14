@@ -24,6 +24,7 @@ class transaksi extends Model
         'setor',
         'tarik',
         'nasabah_id',
+        'created_at'
     ];
 
 

@@ -16,11 +16,18 @@ class Setor extends Component
     public $nasabah;
     private $nasabah_id;
     public $setor;
+    public $tanggal;
 
 
     protected $rules = [
         'setor' => 'required|min:1|numeric',
+        'tanggal' => 'required|date',
     ];
+
+    public function mount()
+    {
+        $this->tanggal = date("Y-m-d\TH:i:s");
+    }
 
 
     public function find()
@@ -58,6 +65,7 @@ class Setor extends Component
 
             $nasabah->transaksi()->create([
                 'user_id' => Auth::id(),
+                'created_at' => $this->tanggal,
                 'setor' => $this->setor
             ]);
 
