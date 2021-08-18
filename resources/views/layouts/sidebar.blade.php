@@ -93,9 +93,12 @@
             aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item {{  request()->is('laporan') ? 'active' : '' }}"
-                    href="{{route('laporan.index')}}">Laporan Tabunagn</a>
-                <a class="collapse-item {{  request()->is('laporan/*') ? 'active' : '' }}"
+                    href="{{route('laporan.index')}}">Laporan Tabungan</a>
+                <a class="collapse-item {{  request()->is('laporan/pinjaman') ? 'active' : '' }}"
                     href="{{route('laporan.pinjaman')}}">Laporan Pinjaman</a>
+
+                <a class="collapse-item {{  request()->is('laporan/mutasi') ? 'active' : '' }}"
+                    href="{{route('laporan.mutasi')}}">Mutasi Rekening</a>
 
             </div>
         </div>

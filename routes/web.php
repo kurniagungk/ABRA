@@ -46,4 +46,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/laporan', App\Http\Livewire\Laporan\Index::class)->name('laporan.index');
     Route::get('/laporan/pinjaman', App\Http\Livewire\Laporan\Pinjaman::class)->name('laporan.pinjaman');
+    Route::get('/laporan/mutasi', App\Http\Livewire\Laporan\Mutasi::class)->name('laporan.mutasi');
 });
